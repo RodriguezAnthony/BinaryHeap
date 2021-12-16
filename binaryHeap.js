@@ -2,8 +2,9 @@ class PriorityQueue {
     constructor(){
         this.values = [];
     }
-    insert(element){
-        this.values.push(element);
+    enqueue(element){
+        let newNode = new Node(val, priority);
+        this.values.push(newNode);
         this.bubbleUp();
     }
     bubbleUp(){
@@ -12,7 +13,7 @@ class PriorityQueue {
         while(idx > 0){
             let parentidx = Math.floor((idx - 1/2));
             let parent = this.values[parentidx];
-            if(element <= parent) break;
+            if(element.priority <= parent.priority) break;
             if(element > parent){
                 this.values[parentidx] = element;
                 this.values[idx] = parent;
@@ -20,7 +21,7 @@ class PriorityQueue {
             }
         }
     }
-    extractMax(){
+    dequeue(){
         const max = this.values[0];
         const end = this.values.pop();
         if(this.values.length > 0){
@@ -42,15 +43,15 @@ class PriorityQueue {
 
             if(leftChildIdx < length){
                 leftChild = this.values[leftChildIdx];
-                if(leftChild > element){
+                if(leftChild.priority > element.priority){
                     swap = leftChildIdx;
                 }
             }
             if(rightChildIdx < length){
                 rightChild = this.values[rightChildIdx];
                 if(
-                    (swap === null && rightChild > element) || 
-                    (swap !== null && rightChild > leftChild)
+                    (swap === null && rightChild.priority > element.priority) || 
+                    (swap !== null && rightChild.priority > leftChild.priority)
                     ) {
                         swap = rightChildIdx;
                 }
