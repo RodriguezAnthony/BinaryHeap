@@ -1,4 +1,4 @@
-class MaxBinaryHeap {
+class PriorityQueue {
     constructor(){
         this.values = [];
     }
@@ -60,5 +60,12 @@ class MaxBinaryHeap {
             this.values[swap] = element;
             idx = swap;
         }
+    }
+}
+
+class Node{
+    constructor(val, priority){
+        this.val = val;
+        this.priority = priority;
     }
 }
